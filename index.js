@@ -143,6 +143,27 @@ async function run() {
       res.send(result);
     });
 
+    //update user
+    app.put("/users/:email", async (req, res) => {
+      const email = req.params.email;
+      const user = req.body;
+      const filter = { email: email };
+      const option = { upsert: true };
+      const updateDoc = {
+        $set: { user },
+      };
+      const result = await userCollection.updateOne(filter, updateDoc, option);
+      res.send({ result });
+    });
+
+    app.get("/users/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const result = await userCollection.findOne(query);
+      res.send(result);
+      console.log(result);
+    });
+
     // delete user
     // app.delete("/user/delete/:id", async (req, res) => {
     //   const id = req.params.id;
