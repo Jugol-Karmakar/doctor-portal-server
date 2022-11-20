@@ -161,7 +161,6 @@ async function run() {
       const query = { email: email };
       const result = await userCollection.findOne(query);
       res.send(result);
-      console.log(result);
     });
 
     // delete user
