@@ -119,6 +119,7 @@ async function run() {
       res.send(result);
     });
 
+    //doctor post
     app.post("/doctor", async (req, res) => {
       const doctor = req.body;
       const result = await doctorsCollection.insertOne(doctor);
