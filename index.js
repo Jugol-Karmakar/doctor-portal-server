@@ -32,6 +32,7 @@ async function run() {
     const doctorsCollection = client.db("doctor_portal").collection("doctors");
     const paymentCollection = client.db("doctor_portal").collection("payments");
 
+    // service get
     app.get("/services", async (req, res) => {
       const query = {};
       const cursor = serviceCollection.find(query);
@@ -39,6 +40,7 @@ async function run() {
       res.send(result);
     });
 
+    // apponitment available get
     app.get("/available", async (req, res) => {
       const date = req.query.date;
 
@@ -95,6 +97,7 @@ async function run() {
       res.send(booking);
     });
 
+    //booking collection post
     app.post("/booking", async (req, res) => {
       const booking = req.body;
       const query = {
