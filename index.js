@@ -3,7 +3,7 @@ const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
 const port = process.env.PORT || 5000;
-require("dotenv").config();
+require("dotenv");
 const jwt = require("jsonwebtoken");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -183,7 +183,7 @@ async function run() {
       const query = {};
       const cursor = reviewCollection.find(query);
       const reviews = await cursor.toArray();
-      res.send(reviews);
+      return res.send(reviews);
     });
 
     // add review
